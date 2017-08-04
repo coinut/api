@@ -21,3 +21,8 @@ currency = 'btc'
 request.get(`https://bitcoinindex.io/btcusd/convert/${amount}/${currency}`, options, (err, response, body) => {
   console.log(JSON.parse(body))
 })
+
+// get xbtcusd index tick
+request.get(`https://bitcoinindex.io/btcusd`, options, (err, response, body) => {
+  console.log(JSON.parse(body))
+})
