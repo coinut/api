@@ -6,6 +6,7 @@ import random
 import time
 import requests
 
+
 class CoinutAPI():
     '''REST API for https://coinut.com. More documents can be find at https://github.com/coinut/api/wiki'''
 
@@ -107,6 +108,28 @@ class CoinutAPI():
         '''
 
         return self.request("inst_tick", {"inst_id": inst_id})
+
+
+    def get_orderbook(self, inst_id):
+        '''Get a spot trading instrument's orderbook.
+
+        Args:
+            inst_id (int): the inst_id can be obtained using the
+            get_spot_inst_id or get_spot_instruments functions.
+
+        Returns:
+            the trading pair's orderbook
+
+        Examples:
+            >>> c = CoinutAPI()
+            >>> print c.get_orderbook(1)
+            {u'nonce': 1605656906, u'sell': [{u'count': 1, u'price': u'0.01311', u'qty': u'0.00200000'...}
+
+        See also:
+            https://github.com/coinut/api/wiki/Websocket-API#get-orderbooks-in-realtime
+        '''
+
+        return self.request("inst_order_book", {"inst_id": inst_id})
 
 
 
@@ -259,7 +282,7 @@ class CoinutAPI():
     def request(self, api, content = {}):
         url = 'https://api.coinut.com'
         content["request"] = api
-        content["nonce"] = random.randint(1, 1000000000)
+        content["nonce"] = random.randint(1, 4294967290)
         content = json.dumps(content)
         headers = {}
         if self.api_key is not None and self.user is not None:
@@ -269,4 +292,3 @@ class CoinutAPI():
 
         response = requests.post(url, headers=headers, data=content, timeout=5)
         return response.json()
-
