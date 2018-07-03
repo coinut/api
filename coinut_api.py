@@ -282,7 +282,7 @@ class CoinutAPI():
     def request(self, api, content = {}):
         url = 'https://api.coinut.com'
         content["request"] = api
-        content["nonce"] = random.randint(1, 4294967290)
+        content["nonce"] = random.randint(1, 4294967200)
         content = json.dumps(content)
         headers = {}
         if self.api_key is not None and self.user is not None:
