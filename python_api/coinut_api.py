@@ -132,6 +132,27 @@ class CoinutAPI():
         return self.request("inst_order_book", {"inst_id": inst_id})
 
 
+    def get_inst_trades(self, inst_id):
+        '''Get a spot trading instrument's recent trades.
+
+        Args:
+            inst_id (int): the inst_id can be obtained using the
+            get_spot_inst_id or get_spot_instruments functions.
+
+        Returns:
+            the instrument's recent trades
+
+        Examples:
+            >>> c = CoinutAPI()
+            >>> print c.get_inst_trades(1)
+            {u'nonce': 289676251, u'low24': u'0.01235000', u'last': u'0.01253000', ... u'trans_id': 4312849734}
+
+        See also:
+            https://github.com/coinut/api/wiki/Websocket-API#get-market-trades
+        '''
+
+        return self.request("inst_trade", {"inst_id": inst_id})
+
 
     def get_open_orders(self, inst_id):
         '''Get my open orders.
