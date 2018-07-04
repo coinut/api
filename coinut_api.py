@@ -226,7 +226,7 @@ class CoinutAPI():
             number of orders is 1000.
 
         See also:
-            https://github.com/coinut/api/wiki/Websocket-API#submit-an-order
+            https://github.com/coinut/api/wiki/Websocket-API#submit-orders-in-batch-mode
         '''
         return self.request("new_orders", {"orders": ords})
 
