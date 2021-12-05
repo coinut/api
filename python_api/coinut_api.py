@@ -303,11 +303,11 @@ class CoinutAPI():
     def request(self, api, content = {}):
         url = 'https://api.coinut.com'
         content["request"] = api
-        content["nonce"] = random.randint(1, 4294967200)
+        content["nonce"] = random.randint(1, 16777215)
         content = json.dumps(content)
         headers = {}
         if self.api_key is not None and self.user is not None:
-            sig = hmac.new(self.api_key, msg=content,
+            sig = hmac.new(self.api_key.encode('utf-8'), msg=content.encode('utf-8'),
                            digestmod=hashlib.sha256).hexdigest()
             headers = {'X-USER': self.user, "X-SIGNATURE": sig}
 
