@@ -17,7 +17,7 @@ let hbInterval
 const currentRequests = []
 
 const generateNonce = (offset = 0) => {
-  const nonce = (Date.now() % 429496729) + offset
+  const nonce = (Date.now() % 1677721) + offset
   if (!currentRequests[nonce]) {
     return nonce
   }

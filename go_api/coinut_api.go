@@ -353,7 +353,7 @@ func (client *CoinutClient) Request(api string, content string) (map[string]inte
     params := make(map[string]interface{})
     json.Unmarshal([]byte(content), &params)
     params["request"] = api
-    params["nonce"] = rand.Int63n(4294967200) + 1
+    params["nonce"] = rand.Int63n(16777215) + 1
     data, _ := json.Marshal(params)
     sig := ComputeHmac256(client.APIKey, string(data[:]))
     cli := &http.Client{}
